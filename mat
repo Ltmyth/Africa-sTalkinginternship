@@ -1,0 +1,62 @@
+import org.json.*;
+import org.json.JSONArray;
+//import jav/*a*/.util.HashMap;
+//import java.util.Scanner;
+
+public class Mat
+{
+    public static void main(String[] args_)
+    {
+		// Specify your login credentials
+		///String username = "sandbox";
+		///String apiKey   = "5f575600ed705986f2b9115476a9c735c880a10bb66ee5294cf7d1de0b186523";
+                
+                String username = "sandbox";
+		String apiKey   = "5f575600ed705986f2b9115476a9c735c880a10bb66ee5294cf7d1de0b186523";
+
+		// Specify the numbers that you want to send to in a comma-separated list
+		// Please ensure you include the country code (+254 for Kenya in this case)
+		///String recipients = "+256783013570,+256793496476,+256784910695";
+                String recipients = "+256783013570,+256793496476,+256784910695";
+
+		// And of course we want our recipients to know what we really do
+		/*Scanner messagez = new Scanner(System.in);
+                String message= messagez.next();*/
+                String message="Hiii user, this is your friendly neighborhood lumberjack MARKie MARK";
+              // String code="password";
+		// Create a new instance of our awesome gateway class
+		///AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey, "sandbox");
+                AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey,"sandbox");
+                //
+
+		/*************************************************************************************
+			NOTE: If connecting to the sandbox:
+
+			1. Use "sandbox" as the username
+			2. Use the apiKey generated from your sandbox application
+				https://account.africastalking.com/apps/sandbox/settings/key
+			3. Add the "sandbox" flag to the constructor
+
+			AfricasTalkingGateway gateway = new AfricasTalkingGateway(username, apiKey, "sandbox");
+		**************************************************************************************/
+
+		// Thats it, hit send and we'll take care of the rest. Any errors will
+		// be captured in the Exception class below
+		try {
+		   JSONArray results;
+                    results = gateway.sendMessage(recipients, message);
+                    /*if(message.equals(code)){System.out.println("Hiii User");
+                    }else{System.out.println(message+"is not valid");}*/
+
+			for( int i = 0; i < results.length(); ++i ) {
+				JSONObject result = results.getJSONObject(i);
+				System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+				System.out.print(result.getString("number") + ",");
+				System.out.print(result.getString("messageId") + ",");
+				System.out.println(result.getString("cost"));
+			}
+		} catch (Exception e) {
+			System.out.println("Encountered an error while sending " + e.getMessage());
+		}
+	}
+}
