@@ -1,0 +1,254 @@
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+
+public class Rerun extends javax.swing.JDialog {
+    public Rerun(java.awt.Frame parent, boolean modal) {
+    super(parent, modal);
+    initComponents();
+    Enter.setVisible(false);
+    Upload.setVisible(false);
+    Hack.setVisible(false);
+    }
+    
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        Message = new java.awt.TextArea();
+        jLabel1 = new javax.swing.JLabel();
+        Enter = new javax.swing.JTextField();
+        Upload = new javax.swing.JButton();
+        Hack = new javax.swing.JTextField();
+        Send = new javax.swing.JButton();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Receiver", "Enter", "Upload" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Message");
+
+        Enter.setText("Enter Here");
+        Enter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnterActionPerformed(evt);
+            }
+        });
+
+        Upload.setText("Upload Here");
+        Upload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UploadActionPerformed(evt);
+            }
+        });
+
+        Hack.setText("jTextField2");
+        Hack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HackActionPerformed(evt);
+            }
+        });
+
+        Send.setText("Send");
+        Send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(257, 257, 257)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Send)
+                                .addGap(94, 94, 94)
+                                .addComponent(Hack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Message, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(Upload))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Enter, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)))
+                .addContainerGap(200, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(Message, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(Enter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Upload)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(Hack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(Send)))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        String Choice = (String)jComboBox1.getSelectedItem();
+        if(Choice.equals("Enter")){
+            Enter.setVisible(true);
+            Upload.setVisible(false);
+        }else{
+            Upload.setVisible(true);
+            Enter.setVisible(false);
+       }            // TODO add your handling code here:
+    }                                          
+
+    private void SendActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        String Choice = (String)jComboBox1.getSelectedItem();
+        String username = "sandbox";
+	String apiKey   = "5f575600ed705986f2b9115476a9c735c880a10bb66ee5294cf7d1de0b186523";
+        String sms=Message.getText();        
+        String Contact= Enter.getText();        
+        String Path= Hack.getText();       
+        AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey,"sandbox");        
+        if (Choice.equals("Upload")){
+            try (BufferedReader br = new BufferedReader(new FileReader(Path))){
+                String Line = br.readLine().trim();
+                String[] Columns = {"Person","Contact"};
+                Columns[0]=Line;
+                while ((Line = br.readLine()) != null){
+                    String[] Number = Line.split(",");
+                    String[] recipients =Number;             
+                    try{
+                        JSONArray results;
+                        results = gateway.sendMessage(recipients[1],sms);
+                        /*if(message.equals(code)){System.out.println("Hiii User");
+                        }else{System.out.println(message+"is not valid");}*/
+                        for( int i = 0; i < results.length(); ++i ) {
+                            JSONObject result = results.getJSONObject(i);
+	                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+	                    System.out.print(result.getString("number") + ",");
+	                    System.out.print(result.getString("messageId") + ",");
+	                    System.out.println(result.getString("cost"));
+                        }
+                    }catch (Exception e){System.out.println("Encountered an error while sending " + e.getMessage());}
+                }   
+            }catch (IOException e){e.printStackTrace();}
+        }else{
+            try{
+                        JSONArray results;
+                        results = gateway.sendMessage(Contact,sms);
+                        /*if(message.equals(code)){System.out.println("Hiii User");
+                        }else{System.out.println(message+"is not valid");}*/
+                        for( int i = 0; i < results.length(); ++i ) {
+                            JSONObject result = results.getJSONObject(i);
+	                    System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+	                    System.out.print(result.getString("number") + ",");
+	                    System.out.print(result.getString("messageId") + ",");
+	                    System.out.println(result.getString("cost"));
+                        }
+                }catch (Exception e){System.out.println("Encountered an error while sending " + e.getMessage());}
+        }
+                // TODO add your handling code here:
+    }                                    
+
+    private void HackActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        // TODO add your handling code here:
+    }                                    
+
+    private void UploadActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        JFileChooser Button = new JFileChooser(); 
+        Button.showOpenDialog(null);
+        File Csv;
+        Csv = Button.getSelectedFile();
+        String FileName=Csv.getAbsolutePath();
+        Hack.setText(FileName);                // TODO add your handling code here:
+    }                                      
+
+    private void EnterActionPerformed(java.awt.event.ActionEvent evt) {                                      
+                // TODO add your handling code here:
+    }                                     
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Rerun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Rerun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Rerun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Rerun.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }  java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Rerun dialog = new Rerun(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });}
+
+    
+
+  
+   
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JTextField Enter;
+    private javax.swing.JTextField Hack;
+    private java.awt.TextArea Message;
+    private javax.swing.JButton Send;
+    private javax.swing.JButton Upload;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    // End of variables declaration                   
+}
